@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: king-of-diamonds-server
+    runtime: node
+    plan: starter
+    buildCommand: npm install && npx prisma generate && npm run build -w shared && npm run build -w server
+    startCommand: npm run start -w server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        sync: false
+      - key: SERVER_URL
+        sync: false
+      - key: MATCHMAKING_TIMEOUT_MS
+        value: "20000"
+      - key: DEV_AUTH
+        value: "false"

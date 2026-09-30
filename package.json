@@ -1,0 +1,32 @@
+{
+  "name": "king-of-diamonds",
+  "private": true,
+  "version": "1.0.0",
+  "description": "King of Diamonds — real-time multiplayer beauty-contest where strategy crowns the worthy.",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "npm run build -w shared && concurrently -n shared,server,client -c magenta,red,cyan \"npm run dev -w shared\" \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w shared && npm run build -w server && npm run build -w client",
+    "test": "npm run test -w server",
+    "smoke": "tsx scripts/smoke.mts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "postinstall": "prisma generate"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prisma": "6.12.0"
+  },
+  "dependencies": {
+    "@prisma/client": "6.12.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: king-of-diamonds-api
+    env: node
+    plan: free
+    buildCommand: npm install && npx prisma generate && npm run build -w shared && npm run build -w server
+    startCommand: npm run start -w server
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DEV_AUTH
+        value: "false"

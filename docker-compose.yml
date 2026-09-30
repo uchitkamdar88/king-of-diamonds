@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: kod
+      POSTGRES_PASSWORD: kod
+      POSTGRES_DB: king_of_diamonds
+    ports:
+      - "5432:5432"
+    volumes:
+      - kod_pg:/var/lib/postgresql/data
+
+volumes:
+  kod_pg:
