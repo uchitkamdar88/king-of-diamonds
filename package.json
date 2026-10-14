@@ -17,14 +17,14 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate || true"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "prisma": "6.12.0"
+    "concurrently": "^9.1.2"
   },
   "dependencies": {
-    "@prisma/client": "6.12.0"
+    "@prisma/client": "6.12.0",
+    "prisma": "6.12.0"
   },
   "engines": {
     "node": ">=20"
