@@ -10,7 +10,6 @@
     },
     "server": {
       "root": "server",
-      "runtime": "nodejs",
       "installCommand": "cd .. && npm install",
       "buildCommand": "cd .. && npm run build -w shared && npm run build -w server"
     }
