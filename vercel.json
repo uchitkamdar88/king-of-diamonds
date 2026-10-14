@@ -10,10 +10,9 @@
     },
     "server": {
       "root": "server",
-      "framework": "express",
+      "runtime": "nodejs",
       "installCommand": "cd .. && npm install",
-      "buildCommand": "cd .. && npm run build -w shared && npm run build -w server",
-      "entrypoint": "dist/index.js"
+      "buildCommand": "cd .. && npm run build -w shared && npm run build -w server"
     }
   },
   "rewrites": [
