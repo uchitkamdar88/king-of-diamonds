@@ -1,6 +1,4 @@
 import http from "node:http";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
@@ -101,17 +99,7 @@ app.get("/api/leaderboard", async (_req, res) => {
   }
 });
 
-const clientDist = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../client/dist");
-app.use(express.static(clientDist));
-app.get("/{*splat}", (req, res, next) => {
-  if (req.path.startsWith("/auth") || req.path.startsWith("/api") || req.path.startsWith("/socket.io")) {
-    next();
-    return;
-  }
-  res.sendFile(path.join(clientDist, "index.html"), (err) => {
-    if (err) next();
-  });
-});
+// In production the Vercel "client" service serves the SPA; no static fallback needed here.
 
 app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
   console.error("[server] Unhandled error:", err);

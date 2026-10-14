@@ -1,0 +1,42 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "client": {
+      "root": "client",
+      "framework": "vite",
+      "installCommand": "cd .. && npm install",
+      "buildCommand": "cd .. && npm run build -w shared && npm run build -w client",
+      "outputDirectory": "dist"
+    },
+    "server": {
+      "root": "server",
+      "framework": "express",
+      "installCommand": "cd .. && npm install",
+      "buildCommand": "cd .. && npm run build -w shared && npm run build -w server",
+      "entrypoint": "dist/index.js"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/socket.io/(.*)",
+      "destination": { "service": "server" }
+    },
+    {
+      "source": "/auth/(.*)",
+      "destination": { "service": "server" }
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": { "service": "server" }
+    },
+    {
+      "source": "/health",
+      "destination": { "service": "server" }
+    },
+    {
+      "source": "/(.*)",
+      "destination": { "service": "client" }
+    }
+  ]
+}
+
